@@ -607,6 +607,13 @@ anu = await fetchJson(`https://apidhani.herokuapp.com/api/download/ytmp4?url=${u
 ytmp4 = await getBuffer(anu.result.url)
 Dhani.sendMessage(from, ytmp4, video, {caption:`*_© - GiiXyz_*`, thumbnail:Buffer.alloc(0), quoted:mek})
 break
+case 'tiktok':
+case 'ttnowm':
+if (args.length < 1) return reply("*Link?*")
+anu = await fetchJson(`https://apidhani.herokuapp.com/api/download/tiktok?url=${q}&apikey=NisaaCantik`)
+tiktok = await getBuffer(anu.result.nowatermark)
+Dhani.sendMessage(from, tiktok, video, {quoted: mek, caption : '*_© - GiiXyz Boot_*'})
+break
 
 // Fitur Sticker!
 
