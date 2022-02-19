@@ -291,7 +291,6 @@ menu =`*Hii ${pushname}*
 │🔖 *RunTime : ${runtime(process.uptime())}*
 │🔖 *Speed : ${latensie.toFixed(4)} Detik*
 └⬣
-
 ╭─⬣ *「 INFO USER 」⬣*
 │🔖 *Nama : ${pushname}*
 │🔖 *Nomor : @${senderr.split("@")[0]}*
@@ -335,8 +334,6 @@ menu =`*Hii @${senderr.split("@")[0]}*
 └❏
 ╭─❒ *⌜ OWNER MENU ⌟* ❒
 ├ *㋡ ${prefix}Bc / Broadcast _[ Text ]_*
-├ *㋡ ${prefix}Setbiobot _[ Text ]_*
-├ *㋡ ${prefix}Setppbot _[ Text ]_*
 └❏`
 Dhani.sendMessage(from, { contentText: `${menu}`, footerText: `*_© ${ownername} || 2022_*`, buttons: [{ buttonId: `${prefix}runtime`, buttonText: { displayText: '💭 - RunTime' }, type: 1 },{ buttonId: `${prefix}speed`, buttonText: { displayText: '⚡ - Speed' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [senderr,owner]}}}, 'buttonsMessage')
 break
