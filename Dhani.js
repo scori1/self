@@ -334,7 +334,6 @@ menu =`*Hii @${senderr.split("@")[0]} ${sayingtime}*
 ╭─❒ *⌜ INFO MENU ⌟* ❒
 ├ *㋡ ${prefix}Runtime _[ Time Bot ]_*
 ├ *㋡ ${prefix}Speed _[ Respons ]_*
-├ *㋡ ${prefix}Rules _[ Peraturan ]_*
 └❏
 ╭─❒ *⌜ GROUP MENU ⌟* ❒
 ├ *㋡ ${prefix}Antilink _[ On - Off ]_*
@@ -357,6 +356,7 @@ menu =`*Hii @${senderr.split("@")[0]} ${sayingtime}*
 ╭─❒ *⌜ DOWNLOADER MENU ⌟* ❒
 ├ *㋡ ${prefix}ytmp3 _[ Link ]_*
 ├ *㋡ ${prefix}ytmp4 _[ Link ]_*
+├ *㋡ ${prefix}Tiktok _[ Link ]_*
 └❏
 ╭─❒ *⌜ STICKER MENU ⌟* ❒
 ├ *㋡ ${prefix}Sticker _[ Reply Image ]_*
