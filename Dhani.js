@@ -43,36 +43,6 @@ const fakeimage = fs.readFileSync ('./database/image/dhani.jpg')
 const _antilink = JSON.parse(fs.readFileSync('./database/group/antilink.json'))
 const _antivirtex = JSON.parse(fs.readFileSync('./database/group/antivirtex.json'))
 
-// Waktu!
-
-let d = new Date
-let locale = 'en'
-let gmt = new Date(0).getTime() - new Date('1 January 1970').getTime()
-let weton = ['Pahing', 'Pon','Wage','Kliwon','Legi'][Math.floor(((d * 1) + gmt) / 84600000) % 5]
-let week = d.toLocaleDateString(locale, { weekday: 'long' })
-let date = d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })
-let waktu = d.toLocaleDateString(locale, { hour: 'numeric', minute: 'numeric', second: 'numeric' })
-
-
-if(waktu < "23:59:00"){
-var sayingtime = 'Good Night 🌌'
-}
-if(waktu < "19:00:00"){
-var sayingtime = 'Have A Good Night 🌆'
-}
-if(waktu < "18:00:00"){
-var sayingtime = 'Good Afternoon 🌇'
-}
-if(waktu < "15:00:00"){
-var sayingtime = 'Good Day 🏞'
-}
-if(waktu < "11:00:00"){
-var sayingtime = 'Good Morning 🌅'
-}
-if(waktu < "05:00:00"){
-var sayingtime = 'Good Night 🏙'
-}
-
 // Module!
 
 module.exports = Dhani = async (Dhani, mek, _welkom) => {
@@ -312,7 +282,7 @@ case 'menu':
 case 'help':
 timestampe = speed();
 latensie = speed() - timestampe
-menu =`*Hii ${pushname} ${sayingtime}*
+menu =`*Hii ${pushname}*
 
 ╭─⬣ *「 INFO BOT 」⬣*
 │🔖 *Bot Name : ${botname}*
@@ -329,7 +299,7 @@ menu =`*Hii ${pushname} ${sayingtime}*
 Dhani.sendMessage(from, { contentText: `${menu}`, footerText: `*_© ${ownername} || 2022_*`, buttons: [{ buttonId: `${prefix}allmenu`, buttonText: { displayText: '📄 - Menu' }, type: 1 }], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [senderr,owner2]}}}, 'buttonsMessage')
 break
 case 'allmenu':
-menu =`*Hii @${senderr.split("@")[0]} ${sayingtime}*
+menu =`*Hii @${senderr.split("@")[0]}*
 
 ╭─❒ *⌜ INFO MENU ⌟* ❒
 ├ *㋡ ${prefix}Runtime _[ Time Bot ]_*
@@ -355,8 +325,9 @@ menu =`*Hii @${senderr.split("@")[0]} ${sayingtime}*
 └❏
 ╭─❒ *⌜ DOWNLOADER MENU ⌟* ❒
 ├ *㋡ ${prefix}ytmp3 _[ Link ]_*
-├ *㋡ ${prefix}ytmp4 _[ Link ]_*
 ├ *㋡ ${prefix}Tiktok _[ Link ]_*
+├ *㋡ ${prefix}Cecan _[ Foto ]_*
+├ *㋡ ${prefix}Asupan _[ Video ]_*
 └❏
 ╭─❒ *⌜ STICKER MENU ⌟* ❒
 ├ *㋡ ${prefix}Sticker _[ Reply Image ]_*
@@ -599,20 +570,27 @@ anu = await fetchJson(`https://apidhani.herokuapp.com/api/download/ytmp3?url=${u
 ytmp3 = await getBuffer(anu.result.url)
 Dhani.sendMessage(from, ytmp3, audio, {mimetype:"audio/mp4", quoted:mek})
 break
-case 'ytmp4':
-if (args.length < 1) return reply("*Link?*")
-url = args.join(' ')
-reply(`*_Tunggu Sebentar. Sedang Mengirimkan Video!_*`)
-anu = await fetchJson(`https://apidhani.herokuapp.com/api/download/ytmp4?url=${url}&apikey=NisaaCantik`)
-ytmp4 = await getBuffer(anu.result.url)
-Dhani.sendMessage(from, ytmp4, video, {caption:`*_© - GiiXyz_*`, thumbnail:Buffer.alloc(0), quoted:mek})
-break
 case 'tiktok':
 case 'ttnowm':
 if (args.length < 1) return reply("*Link?*")
 anu = await fetchJson(`https://apidhani.herokuapp.com/api/download/tiktok?url=${q}&apikey=NisaaCantik`)
 tiktok = await getBuffer(anu.result.nowatermark)
 Dhani.sendMessage(from, tiktok, video, {quoted: mek, caption : '*_© - GiiXyz Boot_*'})
+break
+case 'cecan':
+buffer = await getBuffer(`https://apidhani.herokuapp.com/api/cecan/indonesia?apikey=NisaaCantik`)
+text1 = `*Cecan Indonesia 🇮🇩*`
+text2 = `© - GiiXyz`
+but = [{buttonId:`${prefix+command}`,buttonText:{displayText:'Next 🖼️'},type:1}]
+sendButImage(from, text1, text2, buffer, but, {quoted: mek})
+break
+case 'asupan':
+case 'asupanloli':
+buffer = await getBuffer(`https://apidhani.herokuapp.com/api/asupan/${command}?apikey=NisaaCantik`)
+text1 = `*Jgn Lupa Comli 🗿*`
+text2 = `© - GiiXyz`
+but = [{buttonId:`${prefix+command}`,buttonText:{displayText:'Next 🎥️'},type:1}]
+sendButVideo(from, text1, text2, buffer, but, {quoted: mek})
 break
 
 // Fitur Sticker!
